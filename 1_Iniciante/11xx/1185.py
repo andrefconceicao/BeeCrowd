@@ -21,7 +21,7 @@ qtd = 0
 
 while(linha < 12):
     while(coluna < 12):
-        if(linha < coluna):
+        if(linha+coluna <= 10):
             soma += matriz[linha][coluna]
             qtd += 1
         coluna += 1
