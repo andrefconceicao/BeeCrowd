@@ -1,50 +1,67 @@
-from tkinter import N
+import math
 
+def iniciaMatriz(n):
+    i = 0
+    matriz = []
+
+    while(i<n):
+        
+        j=0
+        linha = []
+        
+        while(j<n):
+            
+            linha.append(0)
+            
+            j += 1
+        
+        matriz.append(linha)
+        
+        i += 1
+        
+    return matriz
+
+def imprimeMatriz(matriz):
+    i = 0
+    while(i<n):
+        j = 0
+        while(j<n):
+            print(" ", matriz[i][j], end = '')
+            j+=1
+        
+        print('\n')
+        i+=1
+    
+    ##print("\n")
+
+def fazMatriz(matriz, nivel):
+    i = nivel
+
+    while(i<len(matriz)-nivel):
+        
+        j=nivel
+        linha = []
+        
+        while(j<len(matriz)-nivel):
+            
+            if((i == nivel) or (j == nivel) or (i == len(matriz)-nivel-1) or (j == n-nivel-1)):
+                matriz[i][j] = nivel+1
+                
+            j += 1
+        
+        i += 1
+        
+    if(nivel <= int(math.ceil(len(matriz)/2))):
+        fazMatriz(matriz, nivel+1)
 
 n = int(input())
 
-matriz = []
-linha = 0
-coluna = 0
-numDaVez = 1
-
-while(linha < n):
-    linhaV = [None]*n
-    matriz.append(linhaV)
-    linha += 1
-
-linha = 0
-while(linha < n):
-    coluna = 0
-    while(coluna < n):
-        if(coluna == 0 or linha == 0 or coluna == n-1 or linha == n-1):
-            matriz[linha][coluna] = 1
-        else:
-            matriz[linha][coluna] = 0
-        coluna += 1
-    linha += 1
+while(n!=0):
     
-linha = 0
-
-""" ## Consertar
-while(linha < n):
-    coluna = 0
-    while(coluna < n):
-        if(coluna == 0 or linha == 0 or coluna == n-1 or linha == n-1):
-            continue
-        else:
-            if(matriz[linha][coluna-1] == matriz[linha-1][coluna]):
-                matriz[linha][coluna] = matriz[linha][coluna-1]+1
-        coluna += 1
-    linha += 1
-"""
+    matriz = iniciaMatriz(n)
     
-linha = 0
-coluna = 0
-while(linha < n):
-    coluna = 0
-    while(coluna < n):
-        print(matriz[linha][coluna], end=' ')
-        coluna += 1
-    print("\n")
-    linha += 1
+    fazMatriz(matriz, 0)
+    
+    imprimeMatriz(matriz)
+    
+    n = int(input())
